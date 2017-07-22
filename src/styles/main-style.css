@@ -1,0 +1,386 @@
+@font-face{
+  font-family: "quicksand";
+  src: url("../res/fonts/quicksand/Quicksand-Regular.otf");
+}
+
+@font-face{
+  font-family: "quicksand_light";
+  src: url("../res/fonts/quicksand/Quicksand-Light.otf");
+}
+
+@font-face{
+  font-family: "quicksand_bold";
+  src: url("../res/fonts/quicksand/Quicksand-Bold.otf");
+}
+
+html{
+  background: linear-gradient(to bottom, #00537E,#3AA17E);
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+#title{
+  color: white;
+  padding-top: 2px;
+  line-height: 15px;
+  margin-left: 5px;
+  font-weight: bold;
+  float: left;
+  width: 33%;
+  font-family: quicksand;
+}
+
+#add{
+  float: right;
+  width: 30px;
+}
+
+#search{
+  float: left;
+  width: 33%;
+}
+
+
+#floating{
+  z-index: 2;
+  top: 0px;
+  padding-top: 5px;
+  width: 100%;
+  height: 26px;
+  position: fixed;
+  left: 0;
+  background: rgba(0,0,0,.4);
+  opacity: 1;
+}
+
+#top-bar{
+  width: 100%;
+  margin: auto;
+  height: 30px;
+  z-index: 9;
+}
+
+#top-left{
+  float:left;
+}
+
+#top-right{
+  float:right;
+}
+
+input[type="text"]{
+  border: none;
+  background: rgba(0, 0, 0, 0);
+  height: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-family: quicksand;
+  color: white;
+  outline: none;
+  font-size: 10pt;
+  transition: all 0.5s linear;
+}
+
+input[type="text"]:hover,
+input[type="text"]:focus{
+  background: rgba(0, 0, 0, .15);
+}
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+  font-family: quicksand;
+  font-weight: bold;
+  font-size: 10pt;
+}
+
+td{
+  width: 150px;
+  height: auto;
+}
+
+
+.top-right-items{
+  float: right;
+}
+
+.button-icon{
+  width: 100%;
+  height: auto;
+}
+
+.top-button{
+  width: 25px;
+  height: auto;
+}
+
+tr{
+  width: 100%;
+}
+
+button{
+  border: none;
+  background: none;
+  outline: none;
+}
+
+body{
+  height: 100%;
+}
+
+
+
+
+
+
+
+
+
+.row-item-animate{
+  transition: .3s ease all;
+}
+
+.row-item-animate.ng-enter{
+  opacity: 0;
+}
+
+.row-item-animate.ng-enter-active{
+  opacity: 1;
+}
+
+.row-item-animate.ng-leave{
+  opacity: 1;
+}
+
+.row-item-animate.ng-leave-active{
+  opacity: 0;
+}
+
+
+
+#inner-container{
+  width: 100%;
+  height: 90%;
+  background-color: blue;
+}
+
+#recents-row{
+  vertical-align: bottom;
+  overflow-y: visible;
+  overflow-y: scroll;
+  position: fixed;
+  bottom: 75px;
+  top: 0;
+  padding: 10px;
+  width: 100%;
+  left: 0;
+}
+
+
+#test{
+  width: 100%;
+  height: 10%;
+  left: 0;
+  bottom: 0;
+  order: 2;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  overflow: hidden;
+  flex-grow: 5;
+}
+
+
+/* Now Playing */
+
+#now-playing-row{
+  width: 100%;
+  height: 75px;
+  /*background-color: #0044b2;*/
+  background: rgba(0,0,0,.4);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  order: 2;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  overflow: hidden;
+  order: 1;
+  flex-grow: 50;
+}
+
+
+
+
+#bottom-right{
+  height: 100%;
+  flex-grow: 1;
+  order: 2;
+  display: flex;
+  flex-direction: rows;
+}
+
+
+
+#control-side{
+  width: 30%;
+  height: 100%;
+  order: 2;
+  flex-grow: 0;
+  position: fixed;
+  right: 0;
+}
+
+#controls{
+  width: 200px;
+  height: 100%;
+  float: right;
+  padding-right: 5px;
+}
+
+
+.control-button-container{
+  width: 32%;
+  height: 100%;
+  float: right;
+}
+
+.control-button{
+  width: 50%;
+  height: auto;
+  margin-top: 20px;
+}
+
+#info{
+  padding: 15px;
+  width: 100%;
+  order: 1;
+  flex-grow: 0;
+}
+
+
+#now-playing{
+  height: 100%;
+  order: 1;
+  flex-grow: 0;
+  box-shadow: 0px 0px 5px #000;
+}
+
+#now-playing-name{
+  flex-grow: 10;
+  font-size: 10pt;
+  font-weight: bold;
+  font-family: quicksand;
+}
+
+#now-playing-author{
+  margin-top: -20px;
+  flex-grow: 2;
+  font-size: 10pt;
+  font-family: quicksand;
+}
+
+
+
+
+
+/* No recents message */
+
+.info-message{
+  width: 90%;
+  height: 60%;
+  top:0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  text-align: center;
+  transition: all linear 0.5s;
+  font-family: quicksand;
+  margin: auto;
+  color: white;
+}
+
+
+.info-message.ng-hide{
+  transform: translateY(5px);
+  opacity: 0;
+}
+
+
+
+.message{
+  opacity: 1;
+  font-size: 30pt;
+  line-height: 90px;
+  text-align: center;
+  font-family: quicksand_bold;
+}
+
+
+#directions{
+  width: 100%;
+  margin: auto;
+}
+
+table{
+  height: 100%;
+}
+
+.row-item{
+  z-index: 2;
+  color: white;
+  width: 200px;
+  height: 250px;
+  float: left;
+  font-family: quicksand;
+
+  margin: 5px;
+}
+
+.row-podcast-image:hover{
+  box-shadow: 0 1px 5px rgba(0,0,0,1);
+
+  transform: translateY(-2px);
+}
+
+.row-podcast-image{
+  width: 90%;
+  padding: 5px;
+  height: auto;
+  transition: ease-in-out all 0.4s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+
+.row-podcast-title{
+  padding: 2px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 10pt;
+}
+
+.row-podcast-author{
+  font-size: 9pt;
+  padding: 2px;
+}
+
+::-webkit-scrollbar
+{
+  width: 10px;  /* for vertical scrollbars */
+  height: 10px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  width: 100%;
+  background: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.5);
+}

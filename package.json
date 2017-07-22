@@ -1,0 +1,19 @@
+{
+  "name": "reach",
+  "version": "1.0.0",
+  "description": "Podcast Stuff",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "author": "Nick",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-animate": "^1.6.4",
+    "electron-prebuilt": "^1.4.13",
+    "feather-icons": "^3.1.0",
+    "howler": "^2.0.4",
+    "rss-parser": "^2.10.1"
+  }
+}

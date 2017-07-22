@@ -1,0 +1,21 @@
+#new-podcast{
+  width: 150px;
+  height: 100%;
+  float: right;
+  margin-top: -0px;
+  overflow-x: hidden;
+}
+
+#url-input{
+
+  margin-top: 1px;
+  border-radius: 0px;
+  margin-left: 10px;
+  transition: .5s ease all;
+  font-size: 9pt;
+}
+
+
+#url-input.ng-hide{
+  transform: translate(200px);
+}

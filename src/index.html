@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html ng-app="main">
+  <head>
+    <script src="../node_modules/howler/dist/howler.js"></script>
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/angular-animate/angular-animate.js"></script>
+    <script src="../node_modules/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="scripts/ng-stuff.js"></script>
+    <script src="scripts/script.js"></script>
+    <link rel="stylesheet" href="styles/main-style.css">
+    <link rel="stylesheet" href="styles/new-podcast-style.css">
+    <link rel="stylesheet" href="styles/podcast-view.css">
+    <script>
+      feather.replace()
+    </script>
+
+  </head>
+    <body>
+      <div id="main-containter" ng-controller="podcast-view" ng-show="open">
+        <div id="podcast-stuff">
+          <img id="podcast-exit" ng-src="./res/podcast-exit-icon.png" ng-click="open=false"></img>
+          <div id="overlay" ng-mouseenter="blur = 'blur'; visible = 'visible'"  ng-mouseleave="blur = 'no-blur'; visible = 'invisible'">
+            <img id="podcast-image" ng-src="{{imageUrl}}" ng-click="blur = 'no-blur'" ng-class="blur"></img>
+            <button id="remove-button" ng-show="visible == 'visible'" ng-click="removeClicked(title)">remove</button>
+          </div>
+          <div id="podcast-info">
+            <div id="podcast-view-title">
+              {{title}}
+            </div>
+            <br>
+            <br>
+            <div id="description">
+              {{description}}
+            </div>
+          </div>
+        </div>
+        <div id="podcast-episodes">
+          <input id="episode-filter" ng-model="entryFilter" type="text" placeholder="Filter"></input>
+          <div class="entry-data" ng-mouseenter="mouse = 'mousein'" ng-mouseleave="mouse = 'mouseout'" ng-repeat="entry in entries | filter: entryFilter" ng-click="episodeClicked(entry)">
+            <img id="play-button" ng-class="mouse" src="./res/list-play-button.png">
+            </img>
+            <div class="entry-name">
+              {{entry.title}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="side-scroll" id="recents-row" ng-controller="recents-controller">
+          <div id="floating">
+            <div id="title">Reach</div>
+            <input id="search" data-feather="circle" ng-model="query" type="text" placeholder="Search">
+            <button id="add" class="top-button" ng-click="addButtonClicked()"><img class="button-icon" src="./res/plus-icon.png"></img></button>
+            <div id="new-podcast">
+              <i data-feather="circle"></i>
+              <input id="url-input" type="text" placeholder="RSS URL" ng-keydown="keyDown($event)" ng-show="clicked || edit" ng-blur="edit = false;" ng-model="inputUrl"></input>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row-item" ng-repeat="podcast in recents | filter: query as filtered">
+            <img class="row-podcast-image" ng-click="imageClicked(podcast.title,podcast.author,podcast.imageUrl,podcast.description)" ng-src="{{podcast.imageUrl}}"></img>
+            <div class="row-podcast-title">{{podcast.title}}</div>
+            <div class="row-podcast-author">{{podcast.author}}</div>
+          </div>
+          <div class="info-message" id="no-recents" ng-show="recents.length == 0">
+            <span class="message">Uh Oh!<i data-feather="watch"></i></span>
+            <div id="explanation">It looks like you haven't listened to any podcasts yet</div>
+            <br>
+            <br>
+            <br>
+            <div id="directions">To start listening, click the '+' symbol in the top right corner, and paste the URL of the RSS feed of your favorite podcast</div>
+          </div>
+          <div class="info-message" id="no-results" ng-show="filtered.length == 0 && recents.length >= 1">
+            <div class="message">Yikes!</div>
+            <div id="explanation">There seems to be nothing here</div>
+            <br>
+            <br>
+            <br>
+            <div id="directions">Try adding the RSS feed of the podcast you're looking for by clicking the '+' button in the top right corner</div>
+          </div>
+      </div>
+      <div id="now-playing-row" ng-controller="controls">
+          <img id="now-playing" ng-src="{{playingImage}}"></img>
+          <div id="bottom-right">
+            <div id="info">
+              <div id="now-playing-name">{{playingTitle}}</div>
+              <br>
+              <br>
+              <div id="now-playing-author">{{playingAuthor}}</div>
+            </div>
+            <div id="control-side">
+              <div id="controls">
+                <div class="control-button-container">
+                  <img class="control-button" ng-src="./res/control-buttons/next-icon.png"></img>
+                </div>
+                <div class="control-button-container">
+                  <img class="control-button" id="pause-button" ng-click="pauseClicked()" ng-src="./res/control-buttons/pause-icon.png"></img>
+                </div>
+                <div class="control-button-container">
+                  <img class="control-button" data-feather="circle" ng-src="./res/control-buttons/previous-icon.png"></img>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </body>
+</html>
