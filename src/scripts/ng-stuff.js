@@ -61,6 +61,10 @@ angular.module('main',['ngAnimate','rzModule'])
         //console.log($scope.recents);
       }
     }
+    fs.writeFile('./saved-podcasts.txt',JSON.stringify($scope.recents), function(err){
+      if(!err)
+        console.log("saved");
+    });
   });
 
 
@@ -251,6 +255,7 @@ angular.module('main',['ngAnimate','rzModule'])
             var second = Math.floor(d % 3600 % 60);
             var minuteDisplay = minute;
             var secondDisplay = second;
+            var hourDisplay = hour;
 
             if(minute < 10)
               minuteDisplay = "0" + minute;
@@ -262,8 +267,15 @@ angular.module('main',['ngAnimate','rzModule'])
             else
               secondDisplay = second;
 
-            //console.log();
-            return(minuteDisplay + ":" + secondDisplay);
+            if(hour < 10)
+              hourDisplay = "0" + hour;
+            else
+              hourDisplay = hour;
+
+            if(hour == 0)
+              return(minuteDisplay + ":" + secondDisplay);
+            else
+              return(hourDisplay + ":" + minuteDisplay + ":" + secondDisplay);
           },
 
 
@@ -272,13 +284,34 @@ angular.module('main',['ngAnimate','rzModule'])
           },
 
           onEnd: function(){
-            //if($scope.$soun){
-              console.log("okay");
+            if($scope.sound != null){
+              //console.log("okay");
               $scope.sound.seek($scope.slider.options.value);
               $scope.dragging = false;
-            //}
+            }
           }
         }
+    };
+
+    $scope.volume = {
+      options:{
+        value: 100,
+        floor: 0,
+        ceil: 100,
+        step: 1,
+        hideLimitLabels: true,
+        translate: function(value){
+          return("");
+        },
+
+
+        onChange: function(){
+          if($scope.sound != null){
+            $scope.sound.volume($scope.volume.options.value/100);
+          }
+        },
+
+      }
     };
 
   $scope.playEpisode = function(){
