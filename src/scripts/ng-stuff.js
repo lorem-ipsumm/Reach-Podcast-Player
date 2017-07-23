@@ -272,10 +272,11 @@ angular.module('main',['ngAnimate','rzModule'])
           },
 
           onEnd: function(){
-            if($scope.$sound != undefined){
+            //if($scope.$soun){
+              console.log("okay");
               $scope.sound.seek($scope.slider.options.value);
               $scope.dragging = false;
-            }
+            //}
           }
         }
     };
