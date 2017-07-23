@@ -11,9 +11,11 @@
   "dependencies": {
     "angular": "^1.6.5",
     "angular-animate": "^1.6.4",
+    "angularjs-slider": "^6.2.3",
     "electron-prebuilt": "^1.4.13",
     "feather-icons": "^3.1.0",
     "howler": "^2.0.4",
+    "ng-slider": "^2.2.6",
     "rss-parser": "^2.10.1"
   }
 }

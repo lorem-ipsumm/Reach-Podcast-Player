@@ -82,18 +82,14 @@
   width: 25px;
   height: 25px;
   float:left;
-  src: url("");
   margin-top: -5px;
+  margin-left: 10px;
 }
 
-
-.mousein{
-  opacity: 1;
+#play-button:hover{
+  content: url("../res/list-play-button-mouseover.png");
 }
 
-.mouseout{
-  opacity: 0;
-}
 
 #remove-button{
   margin: auto;
@@ -186,6 +182,10 @@
   padding-top: 13px;
   border-bottom: solid 1px #013ea5;
   margin-left: 5px;
+}
+
+.entry-data:hover{
+  background:rgba(0, 0, 0, 0.05);
 }
 
 

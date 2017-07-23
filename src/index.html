@@ -2,19 +2,22 @@
 
 <html ng-app="main">
   <head>
+
     <script src="../node_modules/howler/dist/howler.js"></script>
     <script src="../node_modules/angular/angular.js"></script>
     <script src="../node_modules/angular-animate/angular-animate.js"></script>
     <script src="../node_modules/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="../node_modules/angularjs-slider/dist/rzslider.js"></script>
+    <script type="text/javascript" src="../node_modules/ng-slider/dist/ng-slider.min.js"></script>
     <script src="scripts/ng-stuff.js"></script>
-    <script src="scripts/script.js"></script>
+    <script src="scripts/query-stuff.js"></script>
+    <link rel="stylesheet" href="../node_modules/angularjs-slider/dist/rzslider.css">
     <link rel="stylesheet" href="styles/main-style.css">
     <link rel="stylesheet" href="styles/new-podcast-style.css">
     <link rel="stylesheet" href="styles/podcast-view.css">
-    <script>
-      feather.replace()
-    </script>
+    <link rel="stylesheet" type="text/css" href="../node_modules/ng-slider/dist/css/ng-slider.min.css">
+
 
   </head>
     <body>
@@ -38,8 +41,8 @@
         </div>
         <div id="podcast-episodes">
           <input id="episode-filter" ng-model="entryFilter" type="text" placeholder="Filter"></input>
-          <div class="entry-data" ng-mouseenter="mouse = 'mousein'" ng-mouseleave="mouse = 'mouseout'" ng-repeat="entry in entries | filter: entryFilter" ng-click="episodeClicked(entry)">
-            <img id="play-button" ng-class="mouse" src="./res/list-play-button.png">
+          <div class="entry-data" ng-repeat="entry in entries | filter: entryFilter" ng-dbclick="episodeClicked(entry)">
+            <img id="play-button" ng-click="episodeClicked(entry)" src="./res/list-play-button.png">
             </img>
             <div class="entry-name">
               {{entry.title}}
@@ -60,7 +63,7 @@
           <br>
           <br>
           <div class="row-item" ng-repeat="podcast in recents | filter: query as filtered">
-            <img class="row-podcast-image" ng-click="imageClicked(podcast.title,podcast.author,podcast.imageUrl,podcast.description)" ng-src="{{podcast.imageUrl}}"></img>
+            <img class="row-podcast-image" ng-click="imageClicked(podcast.title,podcast.author,podcast.imageUrl,podcast.description,podcast.entries)" ng-src="{{podcast.imageUrl}}"></img>
             <div class="row-podcast-title">{{podcast.title}}</div>
             <div class="row-podcast-author">{{podcast.author}}</div>
           </div>
@@ -82,8 +85,9 @@
           </div>
       </div>
       <div id="now-playing-row" ng-controller="controls">
-          <img id="now-playing" ng-src="{{playingImage}}"></img>
-          <div id="bottom-right">
+        <img id="now-playing" ng-src="{{playingImage}}"></img>
+        <rzslider id="seek" rz-slider-model="slider.options.value" rz-slider-options="slider.options"></rzslider>
+        <div id="bottom-right">
             <div id="info">
               <div id="now-playing-name">{{playingTitle}}</div>
               <br>
@@ -93,13 +97,13 @@
             <div id="control-side">
               <div id="controls">
                 <div class="control-button-container">
-                  <img class="control-button" ng-src="./res/control-buttons/next-icon.png"></img>
+                  <img class="control-button" id="previous-button" ng-src="./res/control-buttons/next-icon.png"></img>
                 </div>
                 <div class="control-button-container">
-                  <img class="control-button" id="pause-button" ng-click="pauseClicked()" ng-src="./res/control-buttons/pause-icon.png"></img>
+                  <img class="control-button" id="pause-button" ng-click="pauseClicked()" ng-src="./res/control-buttons/play-icon.png"></img>
                 </div>
                 <div class="control-button-container">
-                  <img class="control-button" data-feather="circle" ng-src="./res/control-buttons/previous-icon.png"></img>
+                  <img class="control-button" id="next-button" data-feather="circle" ng-src="./res/control-buttons/previous-icon.png"></img>
                 </div>
               </div>
             </div>
