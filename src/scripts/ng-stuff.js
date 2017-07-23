@@ -1,5 +1,6 @@
 const parser = require('rss-parser');
 const howler = require('howler');
+const fs = require('fs');
 
 
 
@@ -50,6 +51,19 @@ angular.module('main',['ngAnimate','rzModule'])
   }
 
 
+  $scope.$on('reorder',function(event,arg){
+    for(var i = 0; i < $scope.recents.length; i++){
+      if($scope.recents[i].title == arg){
+        //console.log($scope.recents);
+        var item = $scope.recents.splice(i,1)[0];
+        $scope.recents.unshift(item);
+        //console.log($scope.recents.splice(i,1));
+        //console.log($scope.recents);
+      }
+    }
+  });
+
+
 
   $scope.$on('remove-item',function(event, arg){
     for(var i = 0; i < $scope.recents.length; i++){
@@ -57,12 +71,21 @@ angular.module('main',['ngAnimate','rzModule'])
         $scope.recents.splice(i,1);
       }
     }
+
+    fs.writeFile('./saved-podcasts.txt',JSON.stringify($scope.recents), function(err){
+      if(!err)
+        console.log("saved");
+    });
   });
 
 
-  $scope.recents = [
-
-  ];
+  if(fs.existsSync("./saved-podcasts.txt")){
+    var file = fs.readFileSync("./saved-podcasts.txt")
+    text = JSON.parse(file);
+    $scope.recents = text;
+  }else{
+    $scope.recents = []
+  }
 
 
 
@@ -99,15 +122,21 @@ angular.module('main',['ngAnimate','rzModule'])
         $scope.title = parsed.feed.title;
         $scope.description = parsed.feed.description;
         $scope.entries = parsed.feed.entries;
+        $scope.inputUrl;
 
         $scope.recents.unshift({
           'title': $scope.title,
           'author': $scope.author,
           'imageUrl': $scope.imageUrl,
           'description': $scope.description,
-          'entries': $scope.entries
+          'entries': $scope.entries,
+          'rssUrl': $scope.inputUrl
         });
-
+        fs.writeFile('./saved-podcasts.txt',JSON.stringify($scope.recents), function(err){
+          if(!err)
+            console.log("saved");
+        });
+        //console.log($scope.recents[0]);
         $scope.$apply();
       }
 
@@ -144,7 +173,8 @@ angular.module('main',['ngAnimate','rzModule'])
     $rootScope.$broadcast('episode-clicked',{
       'data': data,
       'imageURL': $scope.imageUrl,
-      'author': $scope.author
+      'author': $scope.author,
+      'podcastName': $scope.title
     });
   }
 
@@ -167,8 +197,8 @@ angular.module('main',['ngAnimate','rzModule'])
 
 
   $scope.$on('remove-item',function(event, arg){
-    if($scope.sound != undefined)
-      $scope.sound.unload();
+    //if($scope.sound != undefined)
+      //$scope.sound.unload()
   });
 
 
@@ -179,7 +209,9 @@ angular.module('main',['ngAnimate','rzModule'])
     $scope.playingTitle = arg.data.title;
     $scope.playingAuthor = arg.author;
     $scope.audioLink = arg.data.enclosure.url;
+    $scope.podcastName = arg.podcastName;
     //$scope.sound.src[0] = $scope.audioLink;
+
     if($scope.sound != undefined)
       $scope.sound.unload();
 
@@ -197,9 +229,10 @@ angular.module('main',['ngAnimate','rzModule'])
       $scope.$apply();
     });
 
-
+    $rootScope.$broadcast('reorder',$scope.podcastName);
 
     $scope.playEpisode();
+
     });
 
 
@@ -239,8 +272,10 @@ angular.module('main',['ngAnimate','rzModule'])
           },
 
           onEnd: function(){
-            $scope.sound.seek($scope.slider.options.value);
-            $scope.dragging = false;
+            if($scope.$sound != undefined){
+              $scope.sound.seek($scope.slider.options.value);
+              $scope.dragging = false;
+            }
           }
         }
     };
@@ -249,7 +284,8 @@ angular.module('main',['ngAnimate','rzModule'])
 
 
     $scope.timer = $interval(function refresh(){
-      if(!$scope.dragging)
+
+      if(!$scope.dragging && $scope.sound.state() != "loading")
         $scope.slider.options.value = $scope.sound.seek();
     }, 1000);
 
@@ -274,26 +310,4 @@ angular.module('main',['ngAnimate','rzModule'])
       }
     }
   }
-})
-
-
-.directive('test',function($window){
-  return function(scope,element,attrs){
-    console.log("hi");
-  };
-})
-
-.directive('scroll',function($window){
-  var xVel = 0;
-  return function(scope,element,attrs){
-    angular.element(document.querySelector('.side-scroll')).bind('mousewheel',function(e){
-
-      if(e.deltaY > 0){
-        element[0].scrollLeft += 50;
-      }else {
-        element[0].scrollLeft -= 50;
-      }
-
-    });
-  };
 });

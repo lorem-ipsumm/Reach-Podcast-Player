@@ -62,7 +62,7 @@
           </div>
           <br>
           <br>
-          <div class="row-item" ng-repeat="podcast in recents | filter: query as filtered">
+          <div class="row-item" ng-repeat="podcast in recents | filter: query as filtered track by $index">
             <img class="row-podcast-image" ng-click="imageClicked(podcast.title,podcast.author,podcast.imageUrl,podcast.description,podcast.entries)" ng-src="{{podcast.imageUrl}}"></img>
             <div class="row-podcast-title">{{podcast.title}}</div>
             <div class="row-podcast-author">{{podcast.author}}</div>
