@@ -14,4 +14,4 @@ This application is for all podcast listeners. Itunes, Spotify, and whereever yo
 This was made with electron and angularjs. This is my first time using both of these items so some parts of the program are not perfectly optomized, but I plan on continuing to work on both the program itself, and my angular and electron skills in order to fuilly optimize the program.
 
 
-![alt tag](/github-images/main-window.png)
+![Main Window](/github-images/main-window.png)
