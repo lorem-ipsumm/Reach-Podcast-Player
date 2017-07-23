@@ -17,6 +17,11 @@ This was made with electron and angularjs. This is my first time using both of t
 ![Main Window](/github-images/main-window.png)
 
 
+
+# Donate
+
+I'm a college student and I didn't want to riddle this program with ads, so if you'd like to support me and this project donating is an option. Feel free to donate as little as $1, because honestly anything counts.
+
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KQZ6VEAGUQRGW)
 
 [![PayPal](https://www.paypalobjects.com/en_US/i/scr/pixel.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KQZ6VEAGUQRGW)
