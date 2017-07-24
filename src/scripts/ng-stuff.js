@@ -161,11 +161,15 @@ angular.module('main',['ngAnimate','rzModule'])
     $scope.description = arg.description;
     $scope.open = true;
     $scope.entries = arg.entries;
-
-
-
+    angular.element(document.querySelector("#main-containter")).tabindex = 0;
+  
 
   });
+
+  $scope.onKeyDown = function(e){
+    if(e.key == "Escape")
+      $scope.open = false;
+  }
 
   $scope.removeClicked = function(name){
     $scope.open = false;
@@ -344,4 +348,4 @@ angular.module('main',['ngAnimate','rzModule'])
       }
     }
   }
-});
+})

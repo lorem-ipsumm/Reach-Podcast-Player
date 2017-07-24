@@ -21,7 +21,7 @@
 
   </head>
     <body>
-      <div id="main-containter" ng-controller="podcast-view" ng-show="open">
+      <div tabindex="0" id="main-containter" ng-keydown="onKeyDown($event)" ng-controller="podcast-view" ng-show="open">
         <div id="podcast-stuff">
           <img id="podcast-exit" ng-src="./res/podcast-exit-icon.png" ng-click="open=false"></img>
           <div id="overlay" ng-mouseenter="blur = 'blur'; visible = 'visible'"  ng-mouseleave="blur = 'no-blur'; visible = 'invisible'">
