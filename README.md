@@ -16,6 +16,8 @@ This was made with electron and angularjs. This is my first time using both of t
 
 ![Main Window](/github-images/main-window.png)
 
+![Podcast View](/github-images/podcast-view.png)
+
 
 # TODO:
 * Make listening queue
