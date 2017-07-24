@@ -19,6 +19,12 @@ This was made with electron and angularjs. This is my first time using both of t
 ![Podcast View](/github-images/podcast-view.png)
 
 
+
+# Small Demo
+[![Video](/github-images/video-preview.png)](https://www.youtube.com/watch?v=X1V-xz1itjA&t "Video Title")
+
+
+
 # TODO:
 * Make listening queue
 * Scale better
