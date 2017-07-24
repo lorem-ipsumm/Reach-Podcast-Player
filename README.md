@@ -17,6 +17,17 @@ This was made with electron and angularjs. This is my first time using both of t
 ![Main Window](/github-images/main-window.png)
 
 
+# TODO:
+* Make listening queue
+* Scale better
+  * With generic window sizes the program looks fine, but at smaller than average sizes, things get bad
+* Redo podcast-view UI
+  * When a user clicks a podcast, the current UI is for the old theme, and needs to be updated
+* Have the podcasts actually get the latest episodes when the user opens up the app
+  * This one should be easy because I already have the groundwork setup I just need to implement it
+
+
+
 
 # Donate
 
