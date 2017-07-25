@@ -31,15 +31,19 @@ This was made with electron and angularjs. This is my first time using both of t
   * With generic window sizes the program looks fine, but at smaller than average sizes, things get bad
 * Redo podcast-view UI
   * When a user clicks a podcast, the current UI is for the old theme, and needs to be updated
-* Have the podcasts actually get the latest episodes when the user opens up the app
-  * This one should be easy because I already have the groundwork setup I just need to implement it
+* ~~Have the podcasts actually get the latest episodes when the user opens up the app~~
+* Make a wiki page, or release distributions
+  * If I can figure out how, I'd like to be able to give the users notifications when a new update is available
+* The Play/Pause button is very dodgy at the moment in terms of click detection, so I gotta fix that
+* Put that data structure and algorithm class to good use
+ 
 
 
 
 
 # Donate
 
-I'm a college student and I didn't want to riddle this program with ads, so if you'd like to support me and this project donating is an option. Feel free to donate as little as $1, because honestly anything counts.
+I'm a college student looking for cash and I didn't want to riddle this program with ads, so if you'd like to support me and this project donating is an option. Feel free to donate as little as $1, because honestly anything counts.
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KQZ6VEAGUQRGW)
 
