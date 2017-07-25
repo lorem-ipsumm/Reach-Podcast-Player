@@ -36,6 +36,7 @@ This was made with electron and angularjs. This is my first time using both of t
   * If I can figure out how, I'd like to be able to give the users notifications when a new update is available
 * The Play/Pause button is very dodgy at the moment in terms of click detection, so I gotta fix that
 * Put that data structure and algorithm class to good use
+* Add comments everywhere
  
 
 
