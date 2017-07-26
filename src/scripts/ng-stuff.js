@@ -6,7 +6,6 @@ const fs = require('fs');
 
 
 
-
 angular.module('main',['ngAnimate','rzModule'])
 
 
@@ -85,13 +84,24 @@ angular.module('main',['ngAnimate','rzModule'])
 
   if(fs.existsSync("./saved-podcasts.txt")){
     var file = fs.readFileSync("./saved-podcasts.txt")
-    text = JSON.parse(file);
+    var text = JSON.parse(file);
+
+
+    //update each podcast's entry list
+    for(var i = 0; i < text.length;i++){
+      update(i,text);
+    }
     $scope.recents = text;
   }else{
     $scope.recents = []
   }
 
 
+  function update(index,text){
+    parser.parseURL(text[index].rssUrl, function(err,parsed){
+      text[index].entries = parsed.feed.entries;
+    });
+  }
 
 
   $scope.keyDown = function(e){
@@ -120,8 +130,10 @@ angular.module('main',['ngAnimate','rzModule'])
     parser.parseURL($scope.inputUrl, function(err,parsed){
       if(debounce == false){
         debounce = true;
-
-        $scope.imageUrl = parsed.feed.itunes.image;
+        if(parsed.feed.itunes.image != undefined)
+          $scope.imageUrl = parsed.feed.itunes.image;
+        else
+          $scope.imageUrl = "./res/thumbnails/Radiolab.jpg";
         $scope.author = parsed.feed.itunes.author;
         $scope.title = parsed.feed.title;
         $scope.description = parsed.feed.description;
@@ -162,7 +174,7 @@ angular.module('main',['ngAnimate','rzModule'])
     $scope.open = true;
     $scope.entries = arg.entries;
     angular.element(document.querySelector("#main-containter")).tabindex = 0;
-  
+
 
   });
 
@@ -193,7 +205,7 @@ angular.module('main',['ngAnimate','rzModule'])
 //http://feeds.feedburner.com/CoolGamesInc
 
 
-.controller('controls',function($rootScope,$scope,$interval){
+.controller('controls',function($rootScope,$scope,$interval,$window){
   $scope.paused = true;
   $scope.audioLink = "";
   $scope.value = 0;
@@ -201,6 +213,13 @@ angular.module('main',['ngAnimate','rzModule'])
   $scope.position = 0;
   $scope.dragging = false;
 
+
+  angular.element($window).on('keydown',function(e){
+    if(e.code == "Space"){
+      e.preventDefault();
+      $scope.pauseClicked();
+    }
+  });
 
 
 
@@ -331,6 +350,8 @@ angular.module('main',['ngAnimate','rzModule'])
     $scope.paused = false;
     angular.element(document.querySelector('#pause-button'))[0].src = "./res/control-buttons/pause-icon.png";
   }
+
+
 
 
 
