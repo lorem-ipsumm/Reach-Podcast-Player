@@ -38,14 +38,6 @@ This was made with electron and angularjs. This is my first time using both of t
 * Put that data structure and algorithm class to good use
 * Add comments everywhere
  
-
-# Download
- These are very broken builds so download these and expect a 100% functional program.
- 
- [Linux](http://www.mediafire.com/file/e8k77pdjqyibege/reach_linux.zip)
- 
- 
- [Windows](http://www.mediafire.com/file/4i7exdevyhvsbpy/reach_windows.zip)
  
 
 
