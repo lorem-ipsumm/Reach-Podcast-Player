@@ -40,7 +40,7 @@ This was made with electron and angularjs. This is my first time using both of t
  
 
 # Download
- * These are very broken builds so download these and expect a 100% functional program.
+ These are very broken builds so download these and expect a 100% functional program.
  
  [Linux](http://www.mediafire.com/file/e8k77pdjqyibege/reach_linux.zip)
  
