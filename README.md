@@ -49,6 +49,42 @@ This was made with electron and angularjs. This is my first time using both of t
  
 
 
+## Run
+
+In the project directory:
+
+```bash
+npm start
+```
+
+## Make Executable
+
+To make a build for your OS:
+
+
+for use in npm scripts
+```bash
+npm install electron-packager --save-dev
+```
+for use from cli
+```bash
+sudo npm install electron-packager -g
+```
+For Linux :
+```bash
+electron-packager . --overwrite --platform=linux --arch=x64 --prune=true --out=release-builds
+```
+For Mac :
+```bash
+electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=release-builds
+```
+
+For Windows :
+```bash
+electron-packager . --overwrite --platform=win32 --arch=x64 --prune=true --out=release-builds
+```
+
+
 
 
 # Donate
