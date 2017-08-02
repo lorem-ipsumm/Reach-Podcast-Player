@@ -10,8 +10,13 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="../node_modules/angularjs-slider/dist/rzslider.js"></script>
     <script type="text/javascript" src="../node_modules/ng-slider/dist/ng-slider.min.js"></script>
-    <script src="scripts/ng-stuff.js"></script>
-    <script src="scripts/query-stuff.js"></script>
+    <script src="scripts/setup.js"></script>
+    <script src="scripts/controllers/recents-controller.js"></script>
+    <script src="scripts/controllers/podcast-view-controller.js"></script>
+    <script src="scripts/controllers/controls-controller.js"></script>
+    <script src="scripts/cleanup.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <link rel="stylesheet" href="../node_modules/angularjs-slider/dist/rzslider.css">
     <link rel="stylesheet" href="styles/main-style.css">
     <link rel="stylesheet" href="styles/new-podcast-style.css">
@@ -21,7 +26,7 @@
 
   </head>
     <body>
-      <div tabindex="0" id="main-containter" ng-keydown="onKeyDown($event)" ng-controller="podcast-view" ng-show="open">
+      <div id="main-containter" ng-keydown="onKeyDown($event)" ng-controller="podcast-view" ng-show="open">
         <div id="podcast-stuff">
           <img id="podcast-exit" ng-src="./res/podcast-exit-icon.png" ng-click="open=false"></img>
           <div id="overlay" ng-mouseenter="blur = 'blur'; visible = 'visible'"  ng-mouseleave="blur = 'no-blur'; visible = 'invisible'">
@@ -29,7 +34,7 @@
             <button id="remove-button" ng-show="visible == 'visible'" ng-click="removeClicked(title)">remove</button>
           </div>
           <div id="podcast-info">
-            <div id="podcast-view-title">
+            <div id="podcast-view-title" >
               {{title}}
             </div>
             <br>
@@ -39,13 +44,13 @@
             </div>
           </div>
         </div>
-        <div id="podcast-episodes">
+        <div  id="podcast-episodes">
           <input id="episode-filter" ng-model="entryFilter" type="text" placeholder="Filter"></input>
-          <div class="entry-data" ng-repeat="entry in entries | filter: entryFilter" ng-dbclick="episodeClicked(entry)">
+          <div right-click class="entry-data" ng-repeat="entry in entries | filter: entryFilter">
             <img id="play-button" ng-click="episodeClicked(entry)" src="./res/list-play-button.png">
             </img>
-            <div class="entry-name">
-              {{entry.title}}
+            <div class="entry-name"  onclick="start(this)">
+              <div class="marquee">{{entry.title}}</div>
             </div>
           </div>
         </div>
@@ -53,10 +58,9 @@
       <div class="side-scroll" id="recents-row" ng-controller="recents-controller">
           <div id="floating">
             <div id="title">Reach</div>
-            <input id="search" data-feather="circle" ng-model="query" type="text" placeholder="Search">
+            <input id="filter" ng-model="query" ng-keydown="filterKeyDown($event)" ng-keyup="filterKeyUp($event)" type="text" placeholder="Filter">
             <button id="add" class="top-button" ng-click="addButtonClicked()"><img class="button-icon" src="./res/plus-icon.png"></img></button>
             <div id="new-podcast">
-              <i data-feather="circle"></i>
               <input id="url-input" type="text" placeholder="RSS URL" ng-keydown="keyDown($event)" ng-show="clicked || edit" ng-blur="edit = false;" ng-model="inputUrl"></input>
             </div>
           </div>
@@ -84,7 +88,7 @@
             <div id="directions">Try adding the RSS feed of the podcast you're looking for by clicking the '+' button in the top right corner</div>
           </div>
       </div>
-      <div id="now-playing-row" ng-controller="controls">
+      <div id="now-playing-row"  ng-controller="controls" ng-keydown="keyDown($event)">
         <img id="now-playing" ng-src="{{playingImage}}"></img>
         <rzslider id="seek" rz-slider-model="slider.options.value" rz-slider-options="slider.options"></rzslider>
         <div id="bottom-right">
@@ -97,13 +101,13 @@
             <div id="control-side">
               <div id="controls">
                 <div class="control-button-container">
-                  <img class="control-button" id="previous-button" ng-src="./res/control-buttons/next-icon.png"></img>
+                  <img class="control-button" id="previous-button" ng-click="nextClicked()" ng-src="./res/control-buttons/next-icon.png"></img>
                 </div>
                 <div class="control-button-container">
                   <img class="control-button" id="pause-button" ng-click="pauseClicked()" ng-src="./res/control-buttons/play-icon.png"></img>
                 </div>
                 <div class="control-button-container">
-                  <img class="control-button" id="next-button" data-feather="circle" ng-src="./res/control-buttons/previous-icon.png"></img>
+                  <img class="control-button" id="next-button"  ng-click="previousClicked()" ng-src="./res/control-buttons/previous-icon.png"></img>
                 </div>
               </div>
               <div id="volume-box">
