@@ -184,6 +184,14 @@
   margin-left: 5px;
 }
 
+.entry-duration{
+  font-family: quicksand;
+  color: white;
+  font-size: 9pt;
+  float:right;
+  margin-right: 25px;
+}
+
 .entry-data:hover{
   background:rgba(0, 0, 0, 0.05);
 }
@@ -195,7 +203,38 @@
   font-family: quicksand;
   font-size: 9pt;
   margin-left: 10px;
+  overflow: hidden;
+  height: 50px;
+  margin-top: -10px;
+  line-height: 40px;
+  /*animation: entry-name 5s linear infinite;*/
+  width: 80%
 }
+
+
+.marquee{
+  display: inline-block;
+  position: relative;
+  height: 20px;
+  white-space: pre;
+  transition: all linear 5s;
+  float: left;
+}
+
+
+
+.marquee-scroll{
+  height: 20px;
+  animation: marquee 10s linear infinite;
+  width: auto;
+}
+
+
+@keyframes marquee {
+  0% { left: 0; }
+100% { left: -100%; }
+}
+
 
 #episode-filter{
   transform: translateY(-20px);
