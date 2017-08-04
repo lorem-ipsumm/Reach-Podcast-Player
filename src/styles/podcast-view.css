@@ -189,6 +189,7 @@
   color: white;
   font-size: 9pt;
   float:right;
+  font-weight: bold;
   margin-right: 25px;
 }
 
@@ -196,6 +197,13 @@
   background:rgba(0, 0, 0, 0.05);
 }
 
+
+.entry-option{
+  float: right;
+  height: 65%;
+  width: auto;
+  margin-right: 15px;
+}
 
 .entry-name{
   color: white;

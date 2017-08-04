@@ -60,7 +60,7 @@ angular.module('main').controller('recents-controller',function($scope,$rootScop
 
 
 
-
+  //Reorder the list so that recent podcasts appear first
   $scope.$on('reorder',function(event,arg){
     for(var i = 0; i < $scope.recents.length; i++){
       if($scope.recents[i].title == arg){
@@ -139,15 +139,17 @@ angular.module('main').controller('recents-controller',function($scope,$rootScop
     //Ctrl+Enter
     if(key == "Enter"){
       if($scope.ctrlDown){
-
-        //If the podcast is in the local database add it to the recents list
-        if($scope.local_database[$scope.query.toLowerCase()] != undefined){
-          var data = $scope.local_database[$scope.query.toLowerCase()];
-          $scope.query = "";
-          $scope.add(data.url);
-        }else{
-          //Display some sort of mesage telling the user that they will need to manually add the url
-          console.log("Nothing found");
+        //Prevent duplicates
+        if(!$scope.searchRecents($scope.query.toLowerCase())){
+          //If the podcast is in the local database add it to the recents list
+          if($scope.local_database[$scope.query.toLowerCase()] != undefined){
+            var data = $scope.local_database[$scope.query.toLowerCase()];
+            $scope.query = "";
+            $scope.add(data.url);
+          }else{
+            //Display some sort of mesage telling the user that they will need to manually add the url
+            console.log("Nothing found");
+          }
         }
 
 
@@ -163,6 +165,15 @@ angular.module('main').controller('recents-controller',function($scope,$rootScop
   };
 
 
+  //Return true if the query is in the recent list
+  $scope.searchRecents = function(query){
+    for(var i = 0; i < $scope.recents.length; i++){
+      if($scope.recents[i].title.toLowerCase() == query){
+        return true;
+      }
+    }
+    return false;
+  }
 
   var debounce = false;
   $scope.add = function(text){
@@ -173,52 +184,55 @@ angular.module('main').controller('recents-controller',function($scope,$rootScop
       parser.parseURL(text, function(err,parsed){
         //console.log(text);
         if(debounce == false){
-          debounce = true;
-          if(parsed.feed.itunes.image != undefined)
-            $scope.imageUrl = parsed.feed.itunes.image;
-          else
-            $scope.imageUrl = "./res/thumbnails/Radiolab.jpg";
+          if(!$scope.searchRecents(parsed.feed.title.toLowerCase())){
+            debounce = true;
+            
 
-
-          $scope.author = parsed.feed.itunes.author;
-          $scope.title = parsed.feed.title;
-          $scope.description = parsed.feed.description;
-          $scope.entries = parsed.feed.entries;
+            //If the podcast is indexed on itunes
+            if(parsed.feed.itunes.image != undefined)
+              $scope.imageUrl = parsed.feed.itunes.image;
+            else
+              $scope.imageUrl = "./res/thumbnails/Radiolab.jpg";
 
 
 
-          //Add the new entry to the local database regardless if it's already there
-          var new_entry = {
-            'author': $scope.author,
-            'description': $scope.description,
-            'title': $scope.title,
-            'url': text
+            $scope.author = parsed.feed.itunes.author;
+            $scope.title = parsed.feed.title;
+            $scope.description = parsed.feed.description;
+            $scope.entries = parsed.feed.entries;
+
+
+
+            //Add the new entry to the local database regardless if it's already there
+            var new_entry = {
+              'author': $scope.author,
+              'description': $scope.description,
+              'title': $scope.title,
+              'url': text
+            }
+            $scope.local_database[$scope.title.toLowerCase()] = new_entry;
+
+
+
+
+
+            $scope.recents.unshift({
+              'title': $scope.title,
+              'author': $scope.author,
+              'imageUrl': $scope.imageUrl,
+              'description': $scope.description,
+              'entries': $scope.entries,
+              'rssUrl': text
+            });
+
+
+            fs.writeFile('./saved-podcasts.txt',JSON.stringify($scope.recents), function(err){
+              if(!err)
+                console.log("saved");
+            });
+            $scope.$apply();
           }
-          $scope.local_database[$scope.title.toLowerCase()] = new_entry;
-
-
-
-
-
-          $scope.recents.unshift({
-            'title': $scope.title,
-            'author': $scope.author,
-            'imageUrl': $scope.imageUrl,
-            'description': $scope.description,
-            'entries': $scope.entries,
-            'rssUrl': text
-          });
-
-
-          fs.writeFile('./saved-podcasts.txt',JSON.stringify($scope.recents), function(err){
-            if(!err)
-              console.log("saved");
-          });
-          $scope.$apply();
-
         }
-
-
       });
     }
     //This was Itunes Search API, but I would definitely run into API limits

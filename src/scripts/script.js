@@ -7,5 +7,4 @@ function start(e){
     e.getElementsByClassName("marquee")[0].classList.add("marquee-scroll");
     scroll = true;
   }
-
 }

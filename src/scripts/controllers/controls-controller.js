@@ -11,7 +11,7 @@ angular.module('main').controller('controls',function($rootScope,$scope,$interva
 
   //Pause episode on space and move +/- five seconds with arrow keys
   angular.element($window).on('keydown',function(e){
-    if(e.code == "Space" && document.activeElement.id != "search"){
+    if(e.code == "Space" && (document.activeElement.id != "filter" && document.activeElement.id != "url-input")){
       e.preventDefault();
       $scope.pauseClicked();
     }else if(e.code == "ArrowLeft"){

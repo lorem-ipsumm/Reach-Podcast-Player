@@ -14,12 +14,12 @@
     <script src="scripts/controllers/recents-controller.js"></script>
     <script src="scripts/controllers/podcast-view-controller.js"></script>
     <script src="scripts/controllers/controls-controller.js"></script>
-    <script src="scripts/cleanup.js"></script>
     <script src="scripts/script.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <link rel="stylesheet" href="../node_modules/angularjs-slider/dist/rzslider.css">
     <link rel="stylesheet" href="styles/main-style.css">
     <link rel="stylesheet" href="styles/new-podcast-style.css">
+    <link rel="stylesheet" href="styles/now-playing-style.css">
     <link rel="stylesheet" href="styles/podcast-view.css">
     <link rel="stylesheet" type="text/css" href="../node_modules/ng-slider/dist/css/ng-slider.min.css">
 
@@ -52,6 +52,9 @@
             <div class="entry-name"  onclick="start(this)">
               <div class="marquee">{{entry.title}}</div>
             </div>
+
+            <img class="entry-option" src="./res/options-icon.png"></img>
+            <div convert class="entry-duration"></div>
           </div>
         </div>
       </div>
@@ -79,6 +82,7 @@
             <br>
             <div id="directions">To start listening, click the '+' symbol in the top right corner, and paste the URL of the RSS feed of your favorite podcast</div>
           </div>
+
           <div class="info-message" id="no-results" ng-show="filtered.length == 0 && recents.length >= 1">
             <div class="message">Yikes!</div>
             <div id="explanation">There seems to be nothing here</div>

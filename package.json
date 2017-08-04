@@ -14,8 +14,14 @@
     "angularjs-slider": "^6.2.3",
     "electron-prebuilt": "^1.4.13",
     "feather-icons": "^3.1.0",
+    "firebase": "^4.2.0",
+    "firebase-admin": "^5.1.0",
     "howler": "^2.0.4",
     "ng-slider": "^2.2.6",
+    "request": "^2.81.0",
     "rss-parser": "^2.10.1"
+  },
+  "devDependencies": {
+    "electron-packager": "^8.7.2"
   }
 }
