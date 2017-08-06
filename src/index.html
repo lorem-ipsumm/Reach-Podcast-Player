@@ -47,13 +47,14 @@
         <div  id="podcast-episodes">
           <input id="episode-filter" ng-model="entryFilter" type="text" placeholder="Filter"></input>
           <div right-click class="entry-data" ng-repeat="entry in entries | filter: entryFilter">
-            <img id="play-button" ng-click="episodeClicked(entry)" src="./res/list-play-button.png">
+            <img class="play-button" ng-click="episodeClicked(entry)" src="./res/list-play-button.png">
             </img>
             <div class="entry-name"  onclick="start(this)">
               <div class="marquee">{{entry.title}}</div>
             </div>
-
-            <img class="entry-option" src="./res/options-icon.png"></img>
+            <img class="entry-option" src="./res/options-button.png"
+             onmouseover="this.src='./res/options-button-mouseover.png'"
+             onmouseout="this.src='./res/options-button.png'"></img>
             <div convert class="entry-duration"></div>
           </div>
         </div>
