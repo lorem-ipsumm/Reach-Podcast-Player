@@ -186,13 +186,13 @@ angular.module('main').controller('recents-controller',function($scope,$rootScop
         if(debounce == false){
           if(!$scope.searchRecents(parsed.feed.title.toLowerCase())){
             debounce = true;
-            
+
 
             //If the podcast is indexed on itunes
             if(parsed.feed.itunes.image != undefined)
               $scope.imageUrl = parsed.feed.itunes.image;
             else
-              $scope.imageUrl = "./res/thumbnails/Radiolab.jpg";
+              $scope.imageUrl = "./res/image-unavailable.png";
 
 
 
