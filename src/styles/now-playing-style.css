@@ -49,7 +49,6 @@
   height: 100%;
   order: 2;
   flex-grow: 1;
-  position: fixed;
   right: 0;
 }
 
@@ -58,7 +57,9 @@
   height: 100%;
   float: right;
   padding-right: 5px;
+  position: absolute;
   z-index: 2;
+  right: 0px;
 }
 
 
@@ -74,14 +75,17 @@
   margin-top: 20px;
 }
 
+#play-button{
+  margin-left: 5px;
+}
 
 
 
 #info{
   padding: 15px;
-  width: 100%;
+  width: 5%;
   order: 1;
-  flex-grow: 1;
+  flex-grow: 5;
 }
 
 
@@ -93,7 +97,6 @@
 }
 
 #now-playing-name{
-  width: 70%;
   font-size: 10pt;
   font-weight: bold;
   /*background-color: red;*/
