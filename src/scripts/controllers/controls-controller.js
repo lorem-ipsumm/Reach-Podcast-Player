@@ -52,7 +52,7 @@ angular.module('main').controller('controls',function($rootScope,$scope,$interva
     $scope.audioLink = arg.data.enclosure.url;
     $scope.podcastName = arg.podcastName;
     $interval.cancel($scope.timer);
-    $scope.slider.options.value = 0;
+    //$scope.slider.options.value = 0;
 
     //$scope.sound.src[0] = $scope.audioLink;
 
@@ -80,42 +80,48 @@ angular.module('main').controller('controls',function($rootScope,$scope,$interva
     });
 
 
+
     $scope.slider = {
         options:{
           value: 0,
           floor: 0,
           ceil: 0,
           step: 1,
-
+          hideLimitLabels: true,
 
           translate: function(value){
-            var d = Number(value);
-            var hour = Math.floor(d/3600);
-            var minute = Math.floor(d % 3600 / 60);
-            var second = Math.floor(d % 3600 % 60);
-            var minuteDisplay = minute;
-            var secondDisplay = second;
-            var hourDisplay = hour;
 
-            if(minute < 10)
-              minuteDisplay = "0" + minute;
-            else
-              minuteDisplay = minute;
+            if(!$scope.slider.options.hideLimitLabels){
+              var d = Number(value);
+              var hour = Math.floor(d/3600);
+              var minute = Math.floor(d % 3600 / 60);
+              var second = Math.floor(d % 3600 % 60);
+              var minuteDisplay = minute;
+              var secondDisplay = second;
+              var hourDisplay = hour;
 
-            if(second < 10)
-              secondDisplay = "0" + second;
-            else
-              secondDisplay = second;
+              if(minute < 10)
+                minuteDisplay = "0" + minute;
+              else
+                minuteDisplay = minute;
 
-            if(hour < 10)
-              hourDisplay = "0" + hour;
-            else
-              hourDisplay = hour;
+              if(second < 10)
+                secondDisplay = "0" + second;
+              else
+                secondDisplay = second;
 
-            if(hour == 0)
-              return(minuteDisplay + ":" + secondDisplay);
-            else
-              return(hourDisplay + ":" + minuteDisplay + ":" + secondDisplay);
+              if(hour < 10)
+                hourDisplay = "0" + hour;
+              else
+                hourDisplay = hour;
+
+              if(hour == 0)
+                return(minuteDisplay + ":" + secondDisplay);
+              else
+                return(hourDisplay + ":" + minuteDisplay + ":" + secondDisplay);
+            }else{
+              return "";
+            }
           },
 
 
@@ -132,6 +138,8 @@ angular.module('main').controller('controls',function($rootScope,$scope,$interva
           }
         }
     };
+
+
 
     $scope.volume = {
       options:{
@@ -156,6 +164,8 @@ angular.module('main').controller('controls',function($rootScope,$scope,$interva
 
 
   $scope.playEpisode = function(){
+    //Make the slider text visible
+    $scope.slider.options.hideLimitLabels = false;
     $scope.timer = $interval(function refresh(){
       if(!$scope.dragging && $scope.sound.state() != "loading")
         $scope.slider.options.value = $scope.sound.seek();
@@ -192,7 +202,7 @@ angular.module('main').controller('controls',function($rootScope,$scope,$interva
     });
 
 
-      //$scope.ceil = $scope.sound._duration;
+
     $scope.sound.on('load',function(){
       $scope.ceil = $scope.sound._duration;
       $scope.slider.options.ceil = $scope.sound._duration;
