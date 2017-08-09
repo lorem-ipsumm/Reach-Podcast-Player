@@ -137,7 +137,7 @@
 #podcast-image{
   background-color: red;
   order:0;
-  height: 100%;
+  height: 95%;
   box-shadow: 0px 0px 5px #000;
   position: relative;
   display: block;
@@ -199,7 +199,7 @@
   font-weight: bold;
   margin-right: 25px;
   margin-left: 20px;
-  margin-top: 3px;
+  margin-top: -1px;
   order: 3;
 }
 
@@ -215,6 +215,10 @@
   margin-right: 15px;
   margin-top: 1px;
   order: 4;
+}
+
+.entry-option:hover{
+  -webkit-filter: brightness(30%);
 }
 
 .entry-name{
@@ -258,14 +262,45 @@
 
 
 #episode-filter{
-  transform: translateY(-20px);
+  transform: translate(5px, -30px);
   position: fixed;
   text-align: left;
   margin-left: 5px;
+  margin-bottom: 10px;
 }
 
 
 #episode-filter::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   text-align: left;
   margin-left: 5px;
+}
+
+
+.options-menu{
+  transform: translateY(-30px);
+  position: absolute;
+  text-align: left;
+  margin-left: 5px;
+  width: 150px;
+  right: 0;
+  height: 20px;
+
+}
+
+
+
+
+.option-holder{
+  float:right;
+  width: 50px;
+  text-align: center;
+}
+
+.option-icon{
+  height: 20px;
+  width: auto;
+}
+
+.option-icon:hover{
+  -webkit-filter: brightness(60%);
 }

@@ -46,22 +46,32 @@
         </div>
         <div  id="podcast-episodes">
           <input id="episode-filter" ng-model="entryFilter" type="text" placeholder="Filter"></input>
+          <div class="options-menu" ng-show="optionsOpen">
+            <div class="option-holder">
+              <img class="option-icon" src="./res/icons/queue-option-icon.png" ng-click="queueClicked()"></img>
+            </div>
+            <div class="option-holder">
+              <img class="option-icon" src="./res/icons/download-option-icon.png"></img>
+            </div>
+            <div class="option-holder">
+              <img class="option-icon" src="./res/icons/info-option-icon.png"></img>
+            </div>
+          </div>
           <div right-click class="entry-data" ng-repeat="entry in entries | filter: entryFilter">
+
             <img class="play-button" ng-click="episodeClicked(entry)" src="./res/list-play-button.png">
             </img>
             <div class="entry-name"  onclick="start(this)">
               <div class="marquee">{{entry.title}}</div>
             </div>
-            <img class="entry-option" src="./res/options-button.png"
-             onmouseover="this.src='./res/options-button-mouseover.png'"
-             onmouseout="this.src='./res/options-button.png'"></img>
+            <img class="entry-option" src="./res/options-button.png" ng-click="optionClicked(entry)"></img>
             <div convert class="entry-duration"></div>
           </div>
         </div>
       </div>
       <div class="side-scroll" id="recents-row" ng-controller="recents-controller">
           <div id="floating">
-            <div id="title">Reach</div>
+            <button id="search" class="top-button" ng-click=""><img class="button-icon" src="./res/search-icon.png"></img></button>
             <input id="filter" ng-model="query" ng-keydown="filterKeyDown($event)" ng-keyup="filterKeyUp($event)" type="text" placeholder="Filter">
             <button id="add" class="top-button" ng-click="addButtonClicked()"><img class="button-icon" src="./res/plus-icon.png"></img></button>
             <div id="new-podcast">

@@ -10,9 +10,7 @@ app.on('ready',function() {
   var win = new BrowserWindow({
      width: 600,
      height: 450,
-     frame: false,
-     radii: [5,5,5,5],
-     transparent: true
+     frame: true
    });
 
   win.loadURL('file://' + __dirname + '/src/index.html');

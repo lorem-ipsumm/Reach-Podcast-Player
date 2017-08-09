@@ -1,13 +1,13 @@
 #new-podcast{
-  width: 150px;
+  width: 30%;
   height: 100%;
   float: right;
-  margin-top: -0px;
   overflow-x: hidden;
+  -webkit-app-region: no-drag;
 }
 
 #url-input{
-
+  width: 100%;
   margin-top: 1px;
   border-radius: 0px;
   margin-left: 10px;

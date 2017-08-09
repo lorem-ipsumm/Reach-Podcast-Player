@@ -75,10 +75,16 @@
   margin-top: 20px;
 }
 
-#play-button{
-  margin-left: 3px;
+#pause-button{
+  transition: all linear 0.1s;
+  margin-left: 2px;
 }
 
+
+.control-button:hover{
+  transform: scale(1.05,1.05);
+  -webkit-filter: brightness(25%);
+}
 
 
 #info{

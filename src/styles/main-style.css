@@ -18,6 +18,9 @@ div{
   -webkit-user-select: none;
 }
 
+#search{
+  float: left;
+}
 
 
 
@@ -29,30 +32,28 @@ html{
   height: 100%;
 }
 
-#title{
-  color: white;
-  padding-top: 2px;
-  line-height: 15px;
-  margin-left: 5px;
-  font-weight: bold;
-  float: left;
-  width: 33%;
-  font-family: quicksand;
-  -webkit-user-select: none;
-}
 
 #add{
   float: right;
   width: 30px;
 }
 
+#search{
+  margin-top: 3px;
+}
+
 #filter{
   float: left;
-  width: 33%;
+  width: 30%;
+  -webkit-app-region: no-drag;
+  text-align: left;
+  padding-left: 10px;
+  margin-left: 3px;
 }
 
 
 #floating{
+  /*-webkit-app-region: drag;*/
   z-index: 2;
   top: 0px;
   padding-top: 5px;
@@ -60,7 +61,7 @@ html{
   height: 26px;
   position: fixed;
   left: 0;
-  background: rgba(0,83,126,.4);
+  background: rgba(0,83,126,1);
   opacity: 1;
 }
 
@@ -83,7 +84,7 @@ input[type="text"]{
   border: none;
   background: rgba(0, 0, 0, 0);
   height: 20px;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   text-align: center;
   font-family: quicksand;
   color: white;
@@ -123,6 +124,11 @@ td{
 .top-button{
   width: 25px;
   height: auto;
+  transition: all linear 0.1s;
+}
+
+.top-button:hover{
+  -webkit-filter: brightness(70%);
 }
 
 tr{
@@ -137,15 +143,6 @@ button{
 
 body{
   height: 100%;
-}
-
-#pause-button{
-  transition: all linear 0.1s;
-}
-
-
-.control-button:hover{
-  transform: scale(1.05,1.05);
 }
 
 
