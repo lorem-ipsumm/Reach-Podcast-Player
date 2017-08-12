@@ -77,12 +77,18 @@ electron-packager . --overwrite --platform=win32 --arch=x64 --prune=true --out=r
 ```
 
 
-
-
-# Donate
+# Support
 
 I'm a college student looking for cash and I didn't want to riddle this program with ads, so if you'd like to support me and this project donating is an option. Feel free to donate as little as $1, because honestly anything counts.
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KQZ6VEAGUQRGW)
 
 [![PayPal](https://www.paypalobjects.com/en_US/i/scr/pixel.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KQZ6VEAGUQRGW)
+
+If you're a hip cool kid and use those new cryptocurrencies:
+ * Bitcoin Address: 15pKN3XAomW8f1TNLzFyhoKJgLekDP5yXe
+ * Ethereum Address: 0xF9caC43d666249b619b7B4909759F3CD097800b1
+ * Litecoin Address: LYUxGtdYrWvfFoDvaPpXRr9eSWzLx4uFUN
+
+Another way to support, but don't want to spend any money (which is fine), is by subscribing to my youtube channel where I will be uploading update videos for the project
+Youtube Channel: www.youtube.com/user/Sonicmanqaz/
