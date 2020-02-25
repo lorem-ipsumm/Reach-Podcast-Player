@@ -1,3 +1,8 @@
+# This Project Has Been Abandoned
+
+Feel free to clone it and make any changes you'd like, but I am no longer working on this project, and I'm sure several things don't work. I made this as my first realy project with AngularJS so the code is absolutely atrocious! Continue at your own risk.
+
+
 # Reach Podcast Player
 
 
