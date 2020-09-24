@@ -5,6 +5,15 @@ Feel free to clone it and make any changes you'd like, but I am no longer workin
 
 # Reach Podcast Player
 
+![Main Window](/github-images/main-window.png)
+
+![Podcast View](/github-images/podcast-view.png)
+
+
+
+# Small Demo
+[![Video](/github-images/video-preview.png)](https://www.youtube.com/watch?v=X1V-xz1itjA&t "Video Title")
+
 
 Reach Podcast Player is a RSS-based podcast player, meaning that in order to listen to your favorite podcasts, all you have to do is copy and paste the RSS feed from the podcast.
 
@@ -17,17 +26,6 @@ This application is for all podcast listeners. Itunes, Spotify, and whereever yo
 # What's Under The Hood?
 
 This was made with electron and angularjs. This is my first time using both of these items so some parts of the program are not perfectly optomized, but I plan on continuing to work on both the program itself, and my angular and electron skills in order to fuilly optimize the program.
-
-
-![Main Window](/github-images/main-window.png)
-
-![Podcast View](/github-images/podcast-view.png)
-
-
-
-# Small Demo
-[![Video](/github-images/video-preview.png)](https://www.youtube.com/watch?v=X1V-xz1itjA&t "Video Title")
-
 
 
 # TODO:
